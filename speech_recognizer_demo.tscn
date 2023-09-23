@@ -1,9 +1,83 @@
-[gd_scene format=3 uid="uid://74sco75cmpj2"]
+[gd_scene load_steps=4 format=3 uid="uid://74sco75cmpj2"]
 
-[node name="Control" type="Control"]
+[ext_resource type="Script" path="res://scripts/SpeechUIManager.cs" id="1_qnajv"]
+[ext_resource type="Script" path="res://scripts/SpeechRecognizer.cs" id="2_hyxph"]
+
+[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_qiane"]
+
+[node name="Control" type="Control" node_paths=PackedStringArray("startButton", "partialResultText", "finalResultText", "speechRecognizer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_qnajv")
+startButton = NodePath("StartListeningButton")
+partialResultText = NodePath("PartialResult")
+finalResultText = NodePath("FinalResult")
+speechRecognizer = NodePath("SpeechRecognizer")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 211.0
+offset_right = 1114.0
+offset_bottom = 456.0
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 435.0
+offset_top = 51.0
+offset_right = 787.0
+offset_bottom = 122.0
+theme_type_variation = &"HeaderLarge"
+text = "Speech Recognition Demo"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PartialLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 199.0
+offset_top = 240.0
+offset_right = 403.0
+offset_bottom = 270.0
+text = "Partial Result:"
+
+[node name="PartialResult" type="Label" parent="."]
+layout_mode = 0
+offset_left = 335.0
+offset_top = 214.0
+offset_right = 1079.0
+offset_bottom = 291.0
+
+[node name="FinalLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 199.0
+offset_top = 354.0
+offset_right = 403.0
+offset_bottom = 384.0
+text = "Final Result:"
+
+[node name="FinalResult" type="Label" parent="."]
+layout_mode = 0
+offset_left = 335.0
+offset_top = 328.0
+offset_right = 1079.0
+offset_bottom = 405.0
+
+[node name="StartListeningButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 513.0
+offset_top = 496.0
+offset_right = 705.0
+offset_bottom = 561.0
+text = "Start Listening"
+
+[node name="MicrophoneStream" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamMicrophone_qiane")
+autoplay = true
+bus = &"Record"
+
+[node name="SpeechRecognizer" type="Node" parent="."]
+script = ExtResource("2_hyxph")
