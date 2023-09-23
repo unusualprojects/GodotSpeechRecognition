@@ -1,4 +1,5 @@
 # Godot 4 Speech Recognition with VOSK
+  ![Example project structure](images/demo-scene.png)
  This is an example of using the VOSK open source speech recognition library in Godot.
  see https://github.com/alphacep/vosk-api (Apache 2.0 license) .
  SpeechRecognizer.cs contains the logic to talk to VOSK to perform voice recognition.
@@ -6,6 +7,8 @@
  The recognition is done in an async task periodically to not interfere with the game logic.
  
  Tested this successfully in Windows 11 and Steamdeck (Linux) with no issues. 
+ 
+
 
 
 ## Steps to re-create this in your project
